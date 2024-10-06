@@ -1,0 +1,23 @@
+# An example config file for a training scripts.
+
+
+
+defaults:
+
+  # WandB and Hydra defaults.
+  - hydra
+  - wandb
+
+  # This file.
+  - _self_
+
+  # Optional override for development.
+  - optional override: example
+
+  # Read-only variables.
+  - _some_experiment
+
+seed: ${generate_random_seed:}
+
+some_arg: "some_default_value"
+example_override: not overridden

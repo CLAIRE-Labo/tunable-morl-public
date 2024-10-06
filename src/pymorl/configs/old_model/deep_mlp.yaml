@@ -1,0 +1,3 @@
+name: "mlp"
+width: 256
+num_hidden_layers: 2

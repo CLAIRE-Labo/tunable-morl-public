@@ -1,0 +1,12 @@
+name: "ppo"
+frames_per_batch: 512
+batch_size: 128
+frames_per_subbatch: 32
+num_iter: 1000
+num_iter_critic: 10
+prefetch: 0
+num_epochs: 5
+lr: 1e-3
+entropy_coef: 1e-2
+advantage_name: td1
+advantage_kwargs: {}

@@ -1,0 +1,4 @@
+name: "deep-sea-treasure-v0"
+max_episode_steps: 100
+hypervolume_reference: [0, -100]
+is_stochastic: false

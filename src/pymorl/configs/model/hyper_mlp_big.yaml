@@ -1,0 +1,4 @@
+type: "hyper_mlp"
+num_hidden: 128
+add_intermediate: true
+feed_obs_into_hyper: false

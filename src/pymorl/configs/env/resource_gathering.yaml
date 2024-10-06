@@ -1,0 +1,4 @@
+name: "resource-gathering-v0"
+max_episode_steps: 100
+hypervolume_reference: [-1, 0, 0]
+is_stochastic: true

@@ -1,0 +1,5 @@
+name: "minecart-deterministic-v0"
+max_episode_steps: 1000
+reward_scale: [1.0, 1.0, 0.1]
+hypervolume_reference: [0, 0, -200]
+is_stochastic: false

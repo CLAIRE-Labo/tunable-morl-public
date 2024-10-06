@@ -1,0 +1,4 @@
+name: "mo-reacher-v4"
+max_episode_steps: 50
+hypervolume_reference: [-50, -50, -50, -50]
+is_stochastic: false

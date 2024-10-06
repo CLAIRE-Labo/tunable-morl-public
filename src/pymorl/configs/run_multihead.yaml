@@ -1,0 +1,17 @@
+defaults:
+  - _self_
+  - hydra
+  - wandb
+  - model: "mlp"
+  - training: "ppo"
+
+device: "cuda"
+
+# Default gamma that can be overwritten by the training config
+training:
+  gamma: 0.999
+
+env:
+  source: "mo-gym"
+  name: "deep-sea-treasure-v0"
+  discrete: false

@@ -1,0 +1,7 @@
+# @package hydra
+
+job:
+  chdir: false
+run:
+  dir: /claire-rcp-scratch/home/terekhov/tunable-morl/outputs/${hydra.job.name}/${now:%Y-%m-%d}/${now:%H-%M-%S-%f}
+verbose: true  # Set to true for logging at debug level.

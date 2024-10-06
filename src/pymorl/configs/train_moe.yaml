@@ -1,0 +1,104 @@
+defaults:
+  - _self_
+  - hydra
+  - wandb
+  - model: multibody_deep_mlp_actor_critic
+  - env: deep-sea-treasure
+
+device: cuda
+seed: 239
+debug: false
+training:
+  # TODO rename these two
+  method: "random_mix"
+  rl_method: "ppo"
+
+  num_iter: 1000
+  # If num_samples is provided, it overrides the number of iterations and the training will use approx.
+  # this number of environment transitions.
+  num_samples: null
+  timer:
+    # If alllocated_time (in seconds) is provided, it overrides the number of iterations and the training will take
+    # all available time. Please do not provide both allocated_time and num_samples!
+    allocated_time: null
+    iter_average_beta: 0.95
+    final_eval_safety_factor: 1
+
+
+  # Currently only in PPO, these unrolls are done in parallel
+  num_unrolls: 8
+  unroll_length: 64
+  entropy_coef: 0.01
+
+  entropy_control:
+    # "const_coef", "mdmm" are supported
+    # MDMM = Modified Differential Multiplier Method
+    # It is a constrained optimization method that keeps entropy close to the target schedule
+    # The Basic Differential Multiplier Method (BDMM) is a special case recovered by setting damping to zero
+    # See "Platt et al., Constrained Differential Optimization" for details on BDMM and MDMM
+    method: "mdmm"
+    init_coef: 0.01
+    coef_lr: 0.01
+    damping: 0.05
+    schedule:
+      # "linear", "cosine", "fun1" are supported
+      type: "cosine"
+      max: 10 # Will be automatically cropped to the max value of log(n) for discrete actions
+      min: 0.1
+      # If more than 0, the schedule is "tiled". Only supported for cosine
+      num_resets: 0
+
+  ppo:
+    num_epochs: 4
+    num_minibatches: 8
+    clip_epsilon: 0.2
+
+  advantage:
+    popart_normalized: false
+    post_scalarization_normalized: false
+    # "td0", "td1", "td1_no_bootstrapping", "gae" are supported
+    # "td1_no_bootstrapping" is the TD(1) estimate where we use the value of zero for bootstrapping
+    estimator: "td1"
+    gamma: 0.99
+    lmbda: 0.95 # Only used for GAE
+
+  # The following block is only used if the policy has a value head
+  value_loss:
+    # scale_lr is only used for an obscure reweighting scheme
+    scale_lr: 1e-2
+    optimize_jointly: false
+    # these are used if optimize_jointly is false
+    num_iter: 2
+    weight_decay: 1e-2
+    # beta selection parameters are used if optimize_jointly is true
+    init_beta: 1.0
+    dynamic_beta: true
+    dynamic_beta_lr: 0.05
+    target_actor_to_critic_ratio: 1.0
+
+  step_discarder:
+    num_burnin_steps: 10
+    num_small_actor_grads: 50
+    small_actor_grad_norm: 1e-3
+    small_entropy: 1e-3
+    bad_sum_reward_factor: 3
+    bad_entropy_factor: 3
+    force_step_after_n_fails: 5
+    window_size: 100
+    max_discarded_frac_in_window: 0.05
+
+  optim:
+    lr: 1e-3
+    value_lr: 1e-3
+    lr_mult_after_fail: 0.5
+    max_grad_norm: 0.5
+eval:
+  every_n_steps: 50
+  pareto_every_n_steps: 200
+  num_pareto_points: 10
+  num_final_pareto_points: 40
+  max_num_vids: 5
+  vid_fps: 8
+  checkpoint_every_n_steps: 200
+  num_unrolls: 20
+  text_color: "white"

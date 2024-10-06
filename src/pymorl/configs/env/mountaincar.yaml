@@ -1,0 +1,4 @@
+name: "mo-mountaincar-v0"
+max_episode_steps: 200
+hypervolume_reference: [-200, -200, -200]
+is_stochastic: false

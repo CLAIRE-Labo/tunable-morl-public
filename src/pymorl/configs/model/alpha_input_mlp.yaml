@@ -1,0 +1,3 @@
+type: "alpha_input_mlp"
+num_hidden: 256
+add_intermediate: false

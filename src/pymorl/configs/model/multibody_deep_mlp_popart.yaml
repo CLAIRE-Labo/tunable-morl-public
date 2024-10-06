@@ -1,0 +1,6 @@
+type: "multibody_mlp"
+num_hidden: 256
+add_intermediate: true
+separate_value_network: true
+popart_norm: true
+popart_lr: 0.01

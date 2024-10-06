@@ -1,0 +1,13 @@
+name: "ppo"
+frames_per_batch: 512
+batch_size: 128
+frames_per_subbatch: 32
+num_iter: 500
+num_iter_critic: 2
+prefetch: 0
+num_epochs: 5
+lr: 1e-2
+entropy_coef: 1e-1
+advantage_name: gae
+advantage_kwargs:
+  lmbda: 0.8

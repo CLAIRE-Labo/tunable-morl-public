@@ -1,0 +1,13 @@
+defaults:
+  - _self_
+  - hydra
+  - wandb
+
+seed: 239
+device: cuda
+load_config: ???
+load_checkpoint: ???
+
+eval:
+  num_evals: 60
+  num_unrolls: 60

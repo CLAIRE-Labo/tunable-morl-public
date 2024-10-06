@@ -1,0 +1,15 @@
+defaults:
+  - _self_
+  - hydra
+  - wandb
+  - env: minecart_deterministic_long
+
+seed: 239
+gamma: 0.99
+num_samples: 4000000
+lr: 4e-3
+batch_size: 256
+final_epsilon: 0.05
+
+num_eval_points: 100
+eval_freq: 1e5

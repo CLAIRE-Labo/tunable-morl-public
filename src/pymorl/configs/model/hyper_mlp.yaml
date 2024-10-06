@@ -1,0 +1,7 @@
+type: "hyper_mlp"
+num_hidden: 64
+add_intermediate: false
+feed_obs_into_hyper: false
+separate_value_network: true
+popart_norm: false
+popart_lr: 1e-3

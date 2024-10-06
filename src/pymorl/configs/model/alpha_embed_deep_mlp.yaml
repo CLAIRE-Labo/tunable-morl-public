@@ -1,0 +1,6 @@
+type: "alpha_embed_mlp"
+num_hidden: 256
+add_intermediate: true
+separate_value_network: true
+popart_norm: false
+popart_lr: 1e-3

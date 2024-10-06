@@ -1,0 +1,20 @@
+defaults:
+  - _self_
+  - hydra
+  - wandb
+  - env: minecart_deterministic_long
+
+seed: 239
+gamma: 0.99
+num_samples: 4e6
+lr: 1e-3
+batch_size: 256
+hidden_dim: 64
+use_extra_layer: False
+
+scaling_factor: [1, 1, 0.1, 0.1]
+max_return: [1.5, 1.5, 0]
+num_er_episodes: 20
+max_buffer_size: 100
+num_model_updates: 50
+save_pf_every_n: 10

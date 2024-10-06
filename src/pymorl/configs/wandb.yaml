@@ -1,0 +1,9 @@
+# @package wandb
+
+project: tunable-morl
+dir: ${hydra:runtime.cwd}/wandb # This is needed to follow ${hydra:runtime.cwd}/wandb if it's a symlink. Bug from wandb.
+mode: online
+anonymous: allow
+name: null
+tags:
+  - development

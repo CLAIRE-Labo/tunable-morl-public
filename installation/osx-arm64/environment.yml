@@ -1,0 +1,12 @@
+name: tunable-morl
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - hydra-core
+      - tqdm
+      - wandb
+      - pre-commit
+      -  -e ../..
